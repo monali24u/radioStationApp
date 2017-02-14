@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app='radioApp'>
+
+<head>
+  <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+  <script src='/js/radioApp.js'></script>
+    <title>Radio Station!</title>
+</head>
+
+<body ng-controller='radioCntl'>
+    <h1>This is Monali's Radio Station!</h1>
+    <div>
+      <embed embed-src="{{stream}}" src="{{stream}}" type="audio/mpeg" width="220" height="50" autostart="0" align="center" border="0" transparentatstart="0" animationatstart="1" showcontrols="true" showaudiocontrols="1" showpositioncontrols="0" showtracker="0" autosize="0" showstatusbar="1" displaysize="false" />
+    </div>
+</body>
+
+</html>
