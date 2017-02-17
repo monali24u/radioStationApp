@@ -70,7 +70,6 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
               // after adding, we set the alien to be an empty object to clear the input fields
               // in our input form
               // rCtrl.radio = 'http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3';
-              // rCntl.url = 'http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3';
               //  rCtrl.radio = JSON.stringify(data["data"]);
                sharedRadioData.setProperty(data["data"]);
           },
