@@ -15,20 +15,42 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
     // simple test variable to make sure our controller variables are accessible to the html
     rCtrl.title = 'This is Monali Radio Station!'
 
-    // get our list of aliens from the aliens factory
-    var getPromise = radioFactory.getallstations();
-    getPromise.then(
-        // promise.then(successFunction, errorFunction)
-        // success function is the first parameter
-        function (res) {
-            rCtrl.stations = res.data;
-        },
-        // failure function is the second parameter of our 'then' promise function
-        function (err) {
-            console.log("getAllStations error:", err);
-            rCtrl.stations = [];
-        })
+    //Get the allstation from Database
+    rCtrl.getallstations = function (event) {
+      console.log('getallstation called');
+      var postPromise = radioFactory.getallstations();
+       postPromise.then(
+           function (data) {
+               var arr = data["data"];
 
+               var arrlen = arr.length;
+               for (var i = 0; i < arrlen; i++) {
+                    // console.log(arr[i]);
+               }
+               sharedRadioData.setAllStations(arr);
+
+              rCtrl.radios =  arr;
+              // console.log(arrlen)
+              // we don't really need anything back from the server other than to
+              // know if our request succeeded or failed.  So here we'll just add
+              // the alien that we sent to our list of aliens
+              //rCtrl.station.push(rCtrl.radio)
+              // after adding, we set the alien to be an empty object to clear the input fields
+              // in our input form
+              // rCtrl.radio = 'http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3';
+              //  rCtrl.radio = JSON.stringify(data["data"]);
+              // var jsonData = JSON.parse(data);
+              // for (var i = 0; i < jsonData.counters.length; i++) {
+              //     var counter = jsonData.counters[i];
+              //     console.log(counter.counter_name);
+              // }
+              //  sharedRadioData.setStation(data[0].["data"]);
+          },
+          function (err) {
+              console.log('Station not found:', err)
+           }
+       )
+    }
     // submit a new alien to be added to the list of aliens
     // we pass the event from which this function is called, but we aren't
     // really doing anything with the event.
@@ -71,12 +93,17 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
               // in our input form
               // rCtrl.radio = 'http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3';
               //  rCtrl.radio = JSON.stringify(data["data"]);
-               sharedRadioData.setProperty(data["data"]);
+               sharedRadioData.setStation(data["data"]);
           },
           function (err) {
               console.log('Station not found:', err)
            }
        )
+    }
+
+    rCtrl.setCurrent = function (index) {
+    console.log(index);
+    sharedRadioData.setStation(index);
     }
 }
 
@@ -89,9 +116,11 @@ function radioPlayerFunction(sharedRadioData, $sce) {
     console.log('radioPlayerController loaded');
 
     rCtrl.getAudioUrl = function() {
-      return $sce.trustAsResourceUrl(sharedRadioData.getProperty());
+      return $sce.trustAsResourceUrl(sharedRadioData.getStation());
     };
 
-
-
+    rCtrl.getAudioUrls = function() {
+      var stations = sharedRadioData.getAllStations();
+      return $sce.trustAsResourceUrl(stations[2]);
+    };
 }

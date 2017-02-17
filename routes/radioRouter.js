@@ -10,7 +10,7 @@ module.exports = function (app) {
         res.sendFile('index.html', { root: './public/html' });
     }),
 
-    // GET: /aliens  - get all aliens
+    // GET: /stations  - get all aliens
     app.get('/stations', function (req, res) {
         radioStorage.find({}, function (err, stationsArray) {
             if (err) {
@@ -18,12 +18,18 @@ module.exports = function (app) {
                 // send back a server error
                 res.status(500).json(err)
             } else {
-                res.send(stationsArray);
+
+              var stations, fLen;
+              stations = ["http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP31",
+                          "http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP32",
+                          "http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3",
+                          "http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP34"];
+              res.send(stations);
             }
         })
     }),
 
-    // GET: /aliens  - get all aliens
+    // GET: /station  - get all aliens
     app.get('/station', function (req, res) {
         radioStorage.find({}, function (err, stationsArray) {
             if (err) {
@@ -31,7 +37,7 @@ module.exports = function (app) {
                 // send back a server error
                 res.status(500).json(err)
             } else {
-                var station = 'http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3';
+                var station = "http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3";
                 res.send(station);
             }
         })

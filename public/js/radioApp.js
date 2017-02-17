@@ -2,14 +2,20 @@
 // angular.module('radioApp', [])
 angular.module('radioApp', [])
     .service('sharedRadioData', function () {
-        var property = '';
-
+        var station = '';
+        var stations = [];
         return {
-            getProperty: function () {
-                return property;
+            getStation: function () {
+                return station;
             },
-            setProperty: function(value) {
-                property = value;
+            setStation: function(value) {
+                station = value;
+            },
+            getAllStations: function () {
+                return stations;
+            },
+            setAllStations: function(value) {
+                stations = value;
             }
         };
     });

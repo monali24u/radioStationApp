@@ -6,32 +6,34 @@
   <script src='/js/radioApp.js'></script>
   <script src='/js/radioFactory.js'></script>
   <script src='/js/radioController.js'></script>
-  <!-- <link rel="stylesheet" type="text/css" href="ng-audio.min.css"> -->
-  <!-- <script src='/js/ng-audio.min.js'></script> -->
 
   <title>Radio Station!</title>
 </head>
 
 <body ng-controller='radioController as rCntl'>
     <h1>{{rCntl.title}}</h1>
-    <!-- <button ng-click="show = !show">Click Me</button>
-    <div ng-show="show">
-      <embed embed-src="{{rCntl.getAudioUrl()}}" src="{{rCntl.getAudioUrl()}}" type="audio/mpeg" width="220" height="50" autostart="0" align="center" border="0" transparentatstart="0" animationatstart="1" showcontrols="true" showaudiocontrols="1" showpositioncontrols="0" showtracker="0" autosize="0" showstatusbar="1" displaysize="false" />
-    </div>
-    <form ng-submit='rCntl.submit($event)'>
-        <input type="text" required aria-required="true" pattern="^(https?://)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$" placeholder='Url' ng-model='radio.stationUrl'>
-        <button type='submit'>Submit Url</button>
-    </form> -->
 
+    <!-- Control for showing single station -->
     <form ng-submit='rCntl.getstation($event)'>
         <button type='Get Station'>Get Station</button>
     </form>
 
+    <!-- Control for showing all stations -->
+    <form ng-submit='rCntl.getallstations($event)'>
+        <button type='Get All Stations'>Get All Stations</button>
+    </form>
 
-     <!-- <h1>{{rCntl.radio}}</h1> -->
+    <ul>
+        <li ng-repeat="radio in rCntl.radios" ng-click="rCntl.setCurrent(radio)">{{radio}}</li>
+    </ul>
+
+    <!-- Control for showing player -->
      <div ng-controller='radioPlayerController as rCntl'>
        <audio controls data-ng-src="{{rCntl.getAudioUrl()}}" ></audio>
      </div>
+     <!-- <div ng-controller='radioPlayerController as rCntl'>
+       <audio controls data-ng-src="{{rCntl.getAudioUrls()}}" ></audio>
+     </div> -->
 
 </body>
 
