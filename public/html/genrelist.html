@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app='radioApp'>
+
+<head>
+  <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+  <script src='/js/radioApp.js'></script>
+  <script src='/js/radioFactory.js'></script>
+  <script src='/js/radioController.js'></script>
+  <title>Genrelist</title>
+</head>
+
+<body id="main2" ng-controller='radioController as rCntl'>
+    <ul>
+        <li ng-repeat="genre in rCntl.genres track by $index" ng-click="rCntl.setCurrentGenre(genre)">{{genre}}</li>
+    </ul>
+
+    <ul>
+        <li ng-repeat="radio1 in rCntl.radios1" ng-click="rCntl.setCurrentRadio(radio1)">{{radio1}}</li>
+    </ul>
+
+    <!-- If block -->
+    <div ng-if="rCntl.radios1.length > 0">
+    <!-- Control for showing player -->
+     <div ng-controller='radioPlayerController as rCntl'>
+       <audio controls data-ng-src="{{rCntl.getAudioUrl()}}" ></audio>
+     </div>
+         </div>
+
+  </body>
+
+</html>

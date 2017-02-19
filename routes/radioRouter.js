@@ -10,6 +10,16 @@ module.exports = function (app) {
         // sendFile uses a PATH, not a URL
         res.sendFile('index.html', { root: './public/html' });
     }),
+    // Root Route
+    app.get('/mainpage', function (req, res) {
+        // sendFile uses a PATH, not a URL
+        res.sendFile('mainpage.html', { root: './public/html' });
+    }),
+    // Root Route
+    // app.get('/genrelist', function (req, res) {
+    //     // sendFile uses a PATH, not a URL
+    //     res.sendFile('genrelist.html', { root: './public/html' });
+    // }),
 
     // GET: /stations  - get all stations
     app.get('/stations', function (req, res) {
@@ -38,6 +48,14 @@ module.exports = function (app) {
     app.get('/genres', function (req, res) {
       console.log("genres called");
       radioStorage.findGenres(res);
+
+    }),
+
+    // GET: /genres  - get all genres
+    app.get('/genrespage', function (req, res) {
+      // console.log("genrespage called in router");
+      res.sendFile('genrelist.html', { root: './public/html' });
+     res.send();
 
     }),
 

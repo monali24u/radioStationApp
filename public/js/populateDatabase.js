@@ -10,42 +10,42 @@ function makeRadio() {
       {
         genreId: 1,
         genreName: "pop",
-        urls: ["http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP31",
-               "http://vip-icecast.538.lw.triple-it.nl:80/WEB07_MP32",
+        urls: ["http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3",
+               "http://vip-icecast.538.lw.triple-it.nl:80/WEB07_MP3",
                "http://http-live.sr.se/p3-mp3-192",
-               "http://vip-icecast.538.lw.triple-it.nl:80/WEB05_MP33"]
+               "http://vip-icecast.538.lw.triple-it.nl:80/WEB05_MP3"]
       },
       {
         genreId: 2,
         genreName: "rock",
-        urls: ["http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP34",
-               "http://vip-icecast.538.lw.triple-it.nl:80/WEB07_MP35",
+        urls: ["http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3",
+               "http://vip-icecast.538.lw.triple-it.nl:80/WEB07_MP3",
                "http://http-live.sr.se/p3-mp3-192",
-               "http://vip-icecast.538.lw.triple-it.nl:80/WEB05_MP36"]
+               "http://vip-icecast.538.lw.triple-it.nl:80/WEB05_MP3"]
       },
       {
         genreId: 3,
         genreName: "classical",
-        urls: ["http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP37",
-               "http://vip-icecast.538.lw.triple-it.nl:80/WEB07_MP38",
+        urls: ["http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3",
+               "http://vip-icecast.538.lw.triple-it.nl:80/WEB07_MP3",
                "http://http-live.sr.se/p3-mp3-192",
-               "http://vip-icecast.538.lw.triple-it.nl:80/WEB05_MP39"]
+               "http://vip-icecast.538.lw.triple-it.nl:80/WEB05_MP3"]
       },
       {
         genreId: 4,
         genreName: "metal",
-        urls: ["http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP13",
-               "http://vip-icecast.538.lw.triple-it.nl:80/WEB07_MP23",
+        urls: ["http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3",
+               "http://vip-icecast.538.lw.triple-it.nl:80/WEB07_MP3",
                "http://http-live.sr.se/p3-mp3-192",
-               "http://vip-icecast.538.lw.triple-it.nl:80/WEB05_MP33"]
+               "http://vip-icecast.538.lw.triple-it.nl:80/WEB05_MP3"]
       },
       {
         genreId: 5,
         genreName: "country",
-        urls: ["http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP43",
-               "http://vip-icecast.538.lw.triple-it.nl:80/WEB07_MP53",
+        urls: ["http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3",
+               "http://vip-icecast.538.lw.triple-it.nl:80/WEB07_MP3",
                "http://http-live.sr.se/p3-mp3-192",
-               "http://vip-icecast.538.lw.triple-it.nl:80/WEB05_MP63"]
+               "http://vip-icecast.538.lw.triple-it.nl:80/WEB05_MP3"]
       }
 
       ];

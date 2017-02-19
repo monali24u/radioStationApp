@@ -94,3 +94,14 @@ function radioCntlFunction(radioFactory, $sce){
 
 
 }
+
+--------------------------------
+var mongoose = require('mongoose');
+
+var radioSchema = mongoose.Schema({
+  genreId: { type:Number, required:true },
+  catName: { type:String, required:true },
+  urlList: Array
+});
+
+module.exports = mongoose.model('radioModel', radioSchema)

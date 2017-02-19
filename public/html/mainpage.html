@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app='radioApp'>
+  <head>
+    <title>Main Page</title>
+    <link href="../css/main.css" rel="stylesheet"/>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+    <script src='/js/radioApp.js'></script>
+    <script src='/js/radioFactory.js'></script>
+    <script src='/js/radioController.js'></script>
+  </head>
+
+  <body id="main1" ng-controller='radioController as rCntl'>
+    <!-- <button onclick="location.href='/genrelist'" style="background: url(../images/playbutton.png)">Click Me!</button> -->
+    <button ng-click="rCntl.getgenrespage($event)" ><img src="../images/play2.jpg" alt="Submit"></button>
+<!-- <a ng-href="/genrelist" ng-click="rCntl.getallgenres($event)">Sign out</a>   ng-href="/genrelist"  -->
+
+
+  </body>
+
+</html>

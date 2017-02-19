@@ -33,11 +33,21 @@ function radioFactoryFunction($http) {
 
     }
 
+    // Get the genere page data
+    function getGenresPage() {
+        // return stations;
+        // http.get returns the Promise for the asynchronous http request
+        // we want to use the data from the successful promise in our controller,
+        // but we can't return it from inside the promise, so we return the whole promise to the controller.
+        return $http.get('/genrespage');
+
+    }
+
     // Get the list of all of our stations
     function getGenreUrls(index) {
       console.log(index);
       return $http.get('/genreurls', {params: {genre: index}})
-      
+
     }
     // Add a new station to our list of stations
     function createStation(Station) {
@@ -57,6 +67,7 @@ function radioFactoryFunction($http) {
         createstation: createStation,
         getstation: getStation,
         getallgenres: getAllGenres,
-        getgenreurls:getGenreUrls
+        getgenreurls:getGenreUrls,
+        getgenrespage:getGenresPage
     }
 }

@@ -66,6 +66,7 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
                      console.log(arr[i]);
                }
                rCtrl.genres =  arr;
+
           },
           function (err) {
               console.log('Station not found:', err)
@@ -73,6 +74,21 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
        )
     }
 
+    //Get the genere page and fill it
+    rCtrl.getgenrespage = function (event) {
+      console.log('getgenrepage called');
+      window.location.href = '../html/genrelist.html'
+      //rCtrl.getallgenres(event);
+
+      // var postPromise = radioFactory.getgenrespage();
+      //  postPromise.then(
+      //      function (data) {
+      //     },
+      //     function (err) {
+      //         console.log('getgenrepage not found:', err)
+      //      }
+      //  )
+    }
 
 
 
@@ -153,6 +169,10 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
          }
      )
     }
+
+    window.onload = function() {
+			 	rCtrl.getallgenres(event);
+			};
 }
 
 
