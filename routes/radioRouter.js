@@ -1,4 +1,5 @@
 var radioStorage = require('../models/radioDBSchema.js');
+var url = require('url') ;
 
 module.exports = function (app) {
     // make sure we are loading this router
@@ -10,38 +11,58 @@ module.exports = function (app) {
         res.sendFile('index.html', { root: './public/html' });
     }),
 
-    // GET: /stations  - get all aliens
+    // GET: /stations  - get all stations
     app.get('/stations', function (req, res) {
-        radioStorage.find({}, function (err, stationsArray) {
-            if (err) {
-                console.log("Database find() error:", err);
-                // send back a server error
-                res.status(500).json(err)
-            } else {
+      console.log("stations called");
+      radioStorage.findRadio({}, res);
+        // radioStorage.find({}, function (err, stationsArray) {
+        //     if (err) {
+        //         console.log("Database find() error:", err);
+        //         // send back a server error
+        //         res.status(500).json(err)
+        //     } else {
+        //       console.log("Database find() success:", err);
+        //       var stations, fLen;
+        //       stations = ["http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3",
+        //                   "http://vip-icecast.538.lw.triple-it.nl:80/WEB07_MP3",
+        //                   "http://http-live.sr.se/p3-mp3-192",
+        //                   "http://vip-icecast.538.lw.triple-it.nl:80/WEB05_MP3"];
+        //       res.send(stations);
+        //     }
+        // })
 
-              var stations, fLen;
-              stations = ["http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP31",
-                          "http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP32",
-                          "http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3",
-                          "http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP34"];
-              res.send(stations);
-            }
-        })
+    }),
+
+
+    // GET: /genres  - get all genres
+    app.get('/genres', function (req, res) {
+      console.log("genres called");
+      radioStorage.findGenres(res);
+
+    }),
+
+    // GET: /genres  - get all genres
+    app.get('/genreurls', function (req, res) {
+      console.log("genreurls called");
+      var queryObject = url.parse(req.url,true).query;
+      console.log(queryObject.genre);
+      radioStorage.findStationsWithGenre(res, queryObject.genre);
+
     }),
 
     // GET: /station  - get all aliens
-    app.get('/station', function (req, res) {
-        radioStorage.find({}, function (err, stationsArray) {
-            if (err) {
-                console.log("Database find() error:", err);
-                // send back a server error
-                res.status(500).json(err)
-            } else {
-                var station = "http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3";
-                res.send(station);
-            }
-        })
-    }),
+    // app.get('/station', function (req, res) {
+    //     radioStorage.find({}, function (err, stationsArray) {
+    //         if (err) {
+    //             console.log("Database find() error:", err);
+    //             // send back a server error
+    //             res.status(500).json(err)
+    //         } else {
+    //             var station = "http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3";
+    //             res.send(station);
+    //         }
+    //     })
+    // }),
 
     app.post('/oneStation', function(req, res) {
         console.log("saving", req.body)

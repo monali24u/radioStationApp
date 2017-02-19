@@ -4,18 +4,18 @@ angular.module('radioApp')
 radioFactoryFunction.$inject = ['$http']
 function radioFactoryFunction($http) {
 
-    // Get the list of all of our aliens
+    // Get the list of all of our stations
     function getStation() {
-        // return aliens;
+        // return stations;
         // http.get returns the Promise for the asynchronous http request
         // we want to use the data from the successful promise in our controller,
         // but we can't return it from inside the promise, so we return the whole promise to the controller.
         return $http.get('/station');
     }
 
-    // Get the list of all of our aliens
+    // Get the list of all of our stations
     function getAllStations() {
-        // return aliens;
+        // return stations;
         // http.get returns the Promise for the asynchronous http request
         // we want to use the data from the successful promise in our controller,
         // but we can't return it from inside the promise, so we return the whole promise to the controller.
@@ -23,10 +23,25 @@ function radioFactoryFunction($http) {
 
     }
 
-    // Add a new alien to our list of aliens
+    // Get the list of all of our stations
+    function getAllGenres() {
+        // return stations;
+        // http.get returns the Promise for the asynchronous http request
+        // we want to use the data from the successful promise in our controller,
+        // but we can't return it from inside the promise, so we return the whole promise to the controller.
+        return $http.get('/genres');
+
+    }
+
+    // Get the list of all of our stations
+    function getGenreUrls(index) {
+      console.log(index);
+      return $http.get('/genreurls', {params: {genre: index}})
+      
+    }
+    // Add a new station to our list of stations
     function createStation(Station) {
 
-        // aliens.push(alien
         console.log('createoneStation:', Station)
         // in this case, since we don't really care about what was returned in the response,
         // we can process the promise here.  To be consistent, we probably should return the
@@ -40,6 +55,8 @@ function radioFactoryFunction($http) {
     return {
         getallstations: getAllStations,
         createstation: createStation,
-        getstation: getStation
+        getstation: getStation,
+        getallgenres: getAllGenres,
+        getgenreurls:getGenreUrls
     }
 }

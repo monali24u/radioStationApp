@@ -51,6 +51,31 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
            }
        )
     }
+
+    //Get the allgenre from Database
+    rCtrl.getallgenres = function (event) {
+      console.log('getallgenres called');
+      var postPromise = radioFactory.getallgenres();
+       postPromise.then(
+           function (data) {
+             //console.log(data);
+                var arr = data["data"];
+
+               var arrlen = arr.length;
+               for (var i = 0; i < arrlen; i++) {
+                     console.log(arr[i]);
+               }
+               rCtrl.genres =  arr;
+          },
+          function (err) {
+              console.log('Station not found:', err)
+           }
+       )
+    }
+
+
+
+
     // submit a new alien to be added to the list of aliens
     // we pass the event from which this function is called, but we aren't
     // really doing anything with the event.
@@ -101,9 +126,32 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
        )
     }
 
-    rCtrl.setCurrent = function (index) {
+    //on click of radio from the list
+    rCtrl.setCurrentRadio = function (index) {
     console.log(index);
     sharedRadioData.setStation(index);
+    }
+
+    //on click of genre from the list
+    rCtrl.setCurrentGenre = function (index) {
+    console.log(index);
+    console.log('setCurrentGenre called');
+    var postPromise = radioFactory.getgenreurls(index);
+     postPromise.then(
+         function (data) {
+           //console.log(data);
+              var arr = data["data"];
+
+             var arrlen = arr.length;
+             for (var i = 0; i < arrlen; i++) {
+                   console.log(arr[i]);
+             }
+             rCtrl.radios1 =  arr;
+        },
+        function (err) {
+            console.log('Station not found:', err)
+         }
+     )
     }
 }
 

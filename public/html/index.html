@@ -24,13 +24,29 @@
     </form>
 
     <ul>
-        <li ng-repeat="radio in rCntl.radios" ng-click="rCntl.setCurrent(radio)">{{radio}}</li>
+        <li ng-repeat="radio in rCntl.radios" ng-click="rCntl.setCurrentRadio(radio)">{{radio}}</li>
     </ul>
+
+    <!-- Control for showing all genre -->
+    <form ng-submit='rCntl.getallgenres($event)'>
+        <button type='Get All Genres'>Get All Genre</button>
+    </form>
+
+    <ul>
+        <li ng-repeat="genre in rCntl.genres track by $index" ng-click="rCntl.setCurrentGenre(genre)">{{genre}}</li>
+    </ul>
+
+    <ul>
+        <li ng-repeat="radio1 in rCntl.radios1" ng-click="rCntl.setCurrentRadio(radio1)">{{radio1}}</li>
+    </ul>
+
 
     <!-- Control for showing player -->
      <div ng-controller='radioPlayerController as rCntl'>
        <audio controls data-ng-src="{{rCntl.getAudioUrl()}}" ></audio>
      </div>
+
+
      <!-- <div ng-controller='radioPlayerController as rCntl'>
        <audio controls data-ng-src="{{rCntl.getAudioUrls()}}" ></audio>
      </div> -->

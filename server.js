@@ -5,15 +5,18 @@ var app = express();
 // serve up any file in the ./public/html directory
 app.use(express.static('./public'))
 
-var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/radioStationDB', function(err) {
-    if(err) {
-        console.log("Database connection error:", err)
-    } else {
-        console.log("Database connected")
-    }
-})
+// var mongoose = require('mongoose')
+// mongoose.connect('mongodb://localhost/radioStationDB', function(err) {
+//     if(err) {
+//         console.log("Database connection error:", err)
+//     } else {
+//         console.log("Database connected")
+//     }
+// })
 
+//Update Database
+var Database = require('./public/js/populateDatabase.js')
+Database.makeradio()
 
 // Routes
 var Routes = require('./routes/radioRouter.js')
