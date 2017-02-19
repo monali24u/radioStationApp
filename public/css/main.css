@@ -24,3 +24,35 @@
 }
 
 /*styling for genrelist.html*/
+
+#header1{
+    height: 100px;
+    background: aqua; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(aqua, blue);
+}
+
+.genreList {
+    list-style-type: none;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #282828;
+}
+
+.genreList li {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 21px;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 18px;
+    border-right: 1px solid #bbb;
+}
+
+.genreList li:hover {
+    background-color: #8000ff;
+    transition: 0.8s;
+}

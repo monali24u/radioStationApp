@@ -6,15 +6,19 @@
   <script src='/js/radioApp.js'></script>
   <script src='/js/radioFactory.js'></script>
   <script src='/js/radioController.js'></script>
+  <link href="../css/main.css" rel="stylesheet"/>
   <title>Genrelist</title>
 </head>
 
 <body id="main2" ng-controller='radioController as rCntl'>
-    <ul>
+
+    <div id="header1"></div>
+
+    <ul class="genreList">
         <li ng-repeat="genre in rCntl.genres track by $index" ng-click="rCntl.setCurrentGenre(genre)">{{genre}}</li>
     </ul>
 
-    <ul>
+    <ul class="urllist">
         <li ng-repeat="radio1 in rCntl.radios1" ng-click="rCntl.setCurrentRadio(radio1)">{{radio1}}</li>
     </ul>
 
