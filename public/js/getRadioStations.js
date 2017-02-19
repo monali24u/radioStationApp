@@ -17,8 +17,8 @@ console.log('radioStation is up!!');
 var station = "http://http-live.sr.se/p3-mp3-192";
 
 function getRadioStationData(){
-// var urlForSingleStation = "http://api.dirble.com/v2/station/10?token=c065b9bc2af0c9df844028b6a9"
-var urlForSingleStation = "http://api.shoutcast.com/legacy/Top500?k=ytBraV3BiMBIOGV4"
+var urlForSingleStation = "http://api.dirble.com/v2/stations?page=1&per_page=5&token=c065b9bc2af0c9df844028b6a9"
+// var urlForSingleStation = "http://api.shoutcast.com/legacy/Top500?k=ytBraV3BiMBIOGV4"
 
 unirest.get(urlForSingleStation)
        .end(function(response, err){
@@ -38,7 +38,7 @@ unirest.get(urlForSingleStation)
 
  // exports.getRadioStationData = getRadioStationData;
  // exports.station = station;
- var apiKey = 'ytBraV3BiMBIOGV4';
+ // var apiKey = 'ytBraV3BiMBIOGV4';
  //
  // let ShoutcastAPI = require('node-shoutcast-api')
  // let api = new ShoutcastAPI(apiKey, 'json')

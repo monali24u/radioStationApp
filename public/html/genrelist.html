@@ -10,26 +10,34 @@
   <title>Genrelist</title>
 </head>
 
-<body id="main2" ng-controller='radioController as rCntl'>
+<body id="main2" ng-controller='radioController as rCtrl'>
 
     <div id="header1"></div>
+    <div id="heading1">Radio<span>FM</span></div>
 
     <ul class="genreList">
-        <li ng-repeat="genre in rCntl.genres track by $index" ng-click="rCntl.setCurrentGenre(genre)">{{genre}}</li>
-    </ul>
-
-    <ul class="urllist">
-        <li ng-repeat="radio1 in rCntl.radios1" ng-click="rCntl.setCurrentRadio(radio1)">{{radio1}}</li>
+        <li ng-repeat="genre in rCtrl.genres track by $index" ng-click="rCtrl.setCurrentGenre(genre)">{{genre}}</li>
     </ul>
 
     <!-- If block -->
-    <div ng-if="rCntl.radios1.length > 0">
+    <div  ng-if="rCtrl.genreradios.length > 0">
     <!-- Control for showing player -->
-     <div ng-controller='radioPlayerController as rCntl'>
-       <audio controls data-ng-src="{{rCntl.getAudioUrl()}}" ></audio>
+       <div class="activeUrl" ng-controller='radioPlayerController as rPCtrl'>
+         <audio controls autoplay data-ng-src="{{rPCtrl.getAudioUrl()}}" ></audio>
+       </div>
      </div>
-         </div>
 
+     <!-- If block -->
+     <div  class="comingSoon" ng-if="rCtrl.genreradios.length == 0">
+          <h2>{{rCtrl.getCurrentGenre()}} Coming soon!!</h2>
+      </div>
+
+
+    <ol class="urllist">
+        <li ng-repeat="radio in rCtrl.genreradios track by $index" ng-click="rCtrl.setCurrentRadio(radio, $index, rCtrl.genreradios.length)">{{rCtrl.getCurrentGenre()}} {{$index+1}} {{rCtrl.getPlayStatus($index)}} </li>
+    </ol>
+
+    <div id="footer1"></div>
   </body>
 
 </html>

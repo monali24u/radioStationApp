@@ -4,6 +4,8 @@ angular.module('radioApp', [])
     .service('sharedRadioData', function () {
         var station = '';
         var stations = [];
+        var genre = '';
+        var play = [];
         return {
             getStation: function () {
                 return station;
@@ -16,6 +18,28 @@ angular.module('radioApp', [])
             },
             setAllStations: function(value) {
                 stations = value;
+            },
+            getGenre: function () {
+                return genre;
+            },
+            setGenre: function(value) {
+                genre = value;
+            },
+            getPlay: function (index) {
+                return play[index];
+            },
+            setPlay: function(index, length) {
+              for (var i = 0; i < length; i++) {
+                  play[i] = "";
+              }
+              for (var i = 0; i < length; i++) {
+                if(i == index)
+                {
+                  play[i] = "  Playing...";
+                }
+                else
+                  play[i] = "";
+              }
             }
         };
     });

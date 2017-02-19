@@ -22,13 +22,31 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
+/*===============================================================================*/
 /*styling for genrelist.html*/
+
+:root {
+  --main-bg-color: #282828;
+  --main-text-color: white;
+  --main-hover-color: #ccc;
+  --main-bgline-color : #111;
+  --main-font-family: "Lucida Console", Monaco, monospace;
+}
 
 #header1{
     height: 100px;
     background: aqua; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(aqua, blue);
+    background: -webkit-linear-gradient(left, var(--main-text-color), var(--main-bg-color));
+}
+
+#heading1{
+  font-size: 30px;
+  position: relative;
+  left: -10px;
+  top: -35px;
+  color: var(--main-text-color);
+  float: right;
+  font-family: var(--main-font-family);
 }
 
 .genreList {
@@ -36,23 +54,105 @@
     z-index: 1;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    background-color: #282828;
+    background-color: var(--main-bg-color);
+    width: 400px;
+    height: 290px;
+    overflow-y: auto;
+    position: fixed;
+    top: 30%;
 }
 
 .genreList li {
-    float: left;
     display: block;
-    color: white;
+    color: var(--main-text-color);
     text-align: center;
     padding: 14px 21px;
     text-decoration: none;
     text-transform: capitalize;
-    font-size: 18px;
-    border-right: 1px solid #bbb;
+    font-size: 20px;
+    font-family: var(--main-font-family);
+    border-bottom: 1px solid var(--main-bgline-color);
 }
 
 .genreList li:hover {
-    background-color: #8000ff;
+    background-color: var(--main-hover-color);
     transition: 0.8s;
 }
+
+
+.urllist{
+    position: relative;
+    left: 40%;
+    top: 30%;
+    width: 400px;
+    height: 370px;
+    overflow-y: auto;
+}
+
+.urllist li {
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    display: block;
+    padding: 12px;
+    border-bottom: 1px solid var(--main-bgline-color);
+    text-transform: capitalize;
+    font-family: var(--main-font-family);
+    /*text-decoration: none;*/
+}
+
+.urllist li:hover {
+    background-color: var(--main-hover-color);
+}
+
+
+.activeUrl{
+  padding: 12px;
+  width: 400px;
+  position: relative;
+  left: 42%;
+}
+
+audio {
+    width: 400px;
+    height: 40px;
+}
+
+.comingSoon h2{
+  text-transform: capitalize;
+}
+
+ @media (max-width: 925px){
+   #header1{
+     height: 60px;
+   }
+   .genreList {
+       width: 200px;
+       height: 150px;
+       margin: 0;
+       padding: 0;
+       position: absolute;
+       top: 30%;
+   }
+
+   .genreList li {
+       padding: 5px 7px;
+       font-size: 14px;
+   }
+   .urllist{
+       position: relative;
+       top: 30%;
+       width: 200px;
+       height: 290px;
+   }
+
+   .urllist li {
+       padding: 8px;
+       font-size: 14px;
+   }
+
+   audio {
+       width: 200px;
+       height: 40px;
+   }
+
+ }

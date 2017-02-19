@@ -12,9 +12,6 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
     // quick check to make sure our controller is loading.
     console.log('radioController loaded');
 
-    // simple test variable to make sure our controller variables are accessible to the html
-    rCtrl.title = 'This is Monali Radio Station!'
-
     //Get the allstation from Database
     rCtrl.getallstations = function (event) {
       console.log('getallstation called');
@@ -22,29 +19,8 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
        postPromise.then(
            function (data) {
                var arr = data["data"];
-
-               var arrlen = arr.length;
-               for (var i = 0; i < arrlen; i++) {
-                    // console.log(arr[i]);
-               }
                sharedRadioData.setAllStations(arr);
-
-              rCtrl.radios =  arr;
-              // console.log(arrlen)
-              // we don't really need anything back from the server other than to
-              // know if our request succeeded or failed.  So here we'll just add
-              // the alien that we sent to our list of aliens
-              //rCtrl.station.push(rCtrl.radio)
-              // after adding, we set the alien to be an empty object to clear the input fields
-              // in our input form
-              // rCtrl.radio = 'http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3';
-              //  rCtrl.radio = JSON.stringify(data["data"]);
-              // var jsonData = JSON.parse(data);
-              // for (var i = 0; i < jsonData.counters.length; i++) {
-              //     var counter = jsonData.counters[i];
-              //     console.log(counter.counter_name);
-              // }
-              //  sharedRadioData.setStation(data[0].["data"]);
+               rCtrl.allradios =  arr;
           },
           function (err) {
               console.log('Station not found:', err)
@@ -58,15 +34,8 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
       var postPromise = radioFactory.getallgenres();
        postPromise.then(
            function (data) {
-             //console.log(data);
-                var arr = data["data"];
-
-               var arrlen = arr.length;
-               for (var i = 0; i < arrlen; i++) {
-                     console.log(arr[i]);
-               }
-               rCtrl.genres =  arr;
-
+              var arr = data["data"];
+              rCtrl.genres =  arr;
           },
           function (err) {
               console.log('Station not found:', err)
@@ -78,45 +47,6 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
     rCtrl.getgenrespage = function (event) {
       console.log('getgenrepage called');
       window.location.href = '../html/genrelist.html'
-      //rCtrl.getallgenres(event);
-
-      // var postPromise = radioFactory.getgenrespage();
-      //  postPromise.then(
-      //      function (data) {
-      //     },
-      //     function (err) {
-      //         console.log('getgenrepage not found:', err)
-      //      }
-      //  )
-    }
-
-
-
-    // submit a new alien to be added to the list of aliens
-    // we pass the event from which this function is called, but we aren't
-    // really doing anything with the event.
-    rCtrl.submit = function (event) {
-        // take a look at what's in the event
-        // console.log(event)
-        // var newAlien = {}
-        // var newAlien = aCtrl.alien
-        var postPromise = aliensFactory.createstation(rCtrl.radio);
-        postPromise.then(
-            function (data) {
-                console.log('createAlien worked')
-                // we don't really need anything back from the server other than to
-                // know if our request succeeded or failed.  So here we'll just add
-                // the alien that we sent to our list of aliens
-                rCtrl.stations.push(rCtrl.radio)
-                // after adding, we set the alien to be an empty object to clear the input fields
-                // in our input form
-                rCtrl.radio = {}
-            },
-            function (err) {
-                console.log('createAliens failed:', err)
-            }
-        )
-
     }
 
     //Get the station from Database
@@ -125,15 +55,6 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
       var postPromise = radioFactory.getstation();
        postPromise.then(
            function (data) {
-              // console.log(data)
-              // we don't really need anything back from the server other than to
-              // know if our request succeeded or failed.  So here we'll just add
-              // the alien that we sent to our list of aliens
-              //rCtrl.station.push(rCtrl.radio)
-              // after adding, we set the alien to be an empty object to clear the input fields
-              // in our input form
-              // rCtrl.radio = 'http://vip-icecast.538.lw.triple-it.nl:80/WEB08_MP3';
-              //  rCtrl.radio = JSON.stringify(data["data"]);
                sharedRadioData.setStation(data["data"]);
           },
           function (err) {
@@ -143,26 +64,21 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
     }
 
     //on click of radio from the list
-    rCtrl.setCurrentRadio = function (index) {
-    console.log(index);
-    sharedRadioData.setStation(index);
+    rCtrl.setCurrentRadio = function (station, index, length) {
+    sharedRadioData.setStation(station);
+    sharedRadioData.setPlay(index, length);
     }
 
     //on click of genre from the list
-    rCtrl.setCurrentGenre = function (index) {
-    console.log(index);
+    rCtrl.setCurrentGenre = function (genre) {
+    console.log(genre);
     console.log('setCurrentGenre called');
-    var postPromise = radioFactory.getgenreurls(index);
+    var postPromise = radioFactory.getgenreurls(genre);
      postPromise.then(
          function (data) {
-           //console.log(data);
               var arr = data["data"];
-
-             var arrlen = arr.length;
-             for (var i = 0; i < arrlen; i++) {
-                   console.log(arr[i]);
-             }
-             rCtrl.radios1 =  arr;
+             rCtrl.genreradios =  arr;
+             sharedRadioData.setGenre(genre);
         },
         function (err) {
             console.log('Station not found:', err)
@@ -173,6 +89,15 @@ function radioCntlFunction(radioFactory, sharedRadioData) {
     window.onload = function() {
 			 	rCtrl.getallgenres(event);
 			};
+
+    rCtrl.getCurrentGenre = function() {
+        return sharedRadioData.getGenre();
+      };
+
+    rCtrl.getPlayStatus = function(index){
+           return sharedRadioData.getPlay(index);
+      };
+
 }
 
 
