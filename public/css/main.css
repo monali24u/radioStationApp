@@ -26,11 +26,17 @@
 /*styling for genrelist.html*/
 
 :root {
-  --main-bg-color: #282828;
-  --main-text-color: white;
-  --main-hover-color: #ccc;
-  --main-bgline-color : #111;
+  --main-bg-color: #94618E;
+  --main-text-color: #F8EEE7;
+  --main-hover-color: #49274A;
+  --main-bgline-color :#F4DECB;
+
   --main-font-family: "Lucida Console", Monaco, monospace;
+
+  /*--main-bg-color: #CCDFCB;
+  --main-text-color: #FF6A5C;
+  --main-hover-color: #414141;
+  --main-bgline-color : #056571;*/
 }
 
 #header1{
@@ -40,10 +46,10 @@
 }
 
 #heading1{
-  font-size: 30px;
+  font-size: 50px;
   position: relative;
   left: -10px;
-  top: -35px;
+  top: -55px;
   color: var(--main-text-color);
   float: right;
   font-family: var(--main-font-family);
@@ -56,7 +62,7 @@
     padding: 0;
     background-color: var(--main-bg-color);
     width: 400px;
-    height: 290px;
+    height: 270px;
     overflow-y: auto;
     position: fixed;
     top: 30%;
@@ -85,7 +91,7 @@
     left: 40%;
     top: 30%;
     width: 400px;
-    height: 370px;
+    height: 360px;
     overflow-y: auto;
 }
 
@@ -124,6 +130,10 @@ audio {
  @media (max-width: 925px){
    #header1{
      height: 60px;
+   }
+   #heading1{
+     font-size: 35px;
+     top: -40px;
    }
    .genreList {
        width: 200px;

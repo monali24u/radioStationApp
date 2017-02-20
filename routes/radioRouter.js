@@ -8,7 +8,7 @@ module.exports = function (app) {
     // Root Route
     app.get('/', function (req, res) {
         // sendFile uses a PATH, not a URL
-        res.sendFile('index.html', { root: './public/html' });
+        res.sendFile('mainpage.html', { root: './public/html' });
     }),
     // Root Route
     app.get('/mainpage', function (req, res) {
